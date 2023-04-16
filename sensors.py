@@ -34,7 +34,7 @@ def publish_data(mqtt_client, data):
     hum = data[2]
 
     # replace user with your USC username in all subscriptions
-    mqtt_client.publish("sangwonc/sensor_info", '{"distance": {0}, "temp": {1}, "hum": {2}}'.format(distance, temp, hum))
+    mqtt_client.publish("sangwonc/sensor_info", '{"Distance": {0}, "Temp": {1}, "Hum": {2}}'.format(distance, temp, hum))
     print(f"Publishing distance: {distance} cm")
     time.sleep(1)
 
