@@ -19,7 +19,6 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("Default callback - topic: " + msg.topic + "   msg: " + str(msg.payload, "utf-8"))
 
-
 # Custom message callback.
 def on_message_from_distance(client, userdata, message):
     print("Custom callback  - distance: " + message.payload.decode())
@@ -39,6 +38,6 @@ if __name__ == '__main__':
     # attach the on_connect() callback function defined above to the mqtt client
     client.on_connect = on_connect
 
-    client.connect(host="68.181.32.115", port=11000, keepalive=60)
+    client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
 
     client.loop_forever()

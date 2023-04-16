@@ -28,7 +28,7 @@ def main():
     grovepi.set_bus("RPI_1")
     time.sleep(1)
 
-    # client = connect_MQTT()
+    client = connect_MQTT()
 
     while True:
 
@@ -37,15 +37,15 @@ def main():
         [humi_new, temp_new] = grovepi.dht(temphum_port, 0)
 
         print('Distance: {}, Humi: {}, Temp: {}'.format(distance_new, humi_new, temp_new))
-        # data.extend([distance_new, temp_new, humi_new])
-        #
-        # publish_data(client, data)
+        data.extend([distance_new, temp_new, humi_new])
+
+        publish_data(client, data)
 
         # New sensor values are now old
         # [humi_old, temp_old] = [humi_new, temp_new]
         # distance_old = distance_new
         data = []
-    time.sleep(3)
+        time.sleep(1)
 
 
 
