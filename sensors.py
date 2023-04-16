@@ -1,6 +1,7 @@
 import time
 import grovepi
 import paho.mqtt.client as mqtt
+import json
 # import Adafruit_GPIO.SPI as SPI
 # import Adafruit_MCP3008
 
@@ -33,18 +34,18 @@ def publish_data(mqtt_client, data):
     hum = data[2]
 
     # replace user with your USC username in all subscriptions
-    mqtt_client.publish("sangwonc/distance", f"{distance}")
+    mqtt_client.publish("sangwonc/sensor_info", '{"distance": {0}, "temp": {1}, "hum": {2}}'.format(distance, temp, hum))
     print(f"Publishing distance: {distance} cm")
     time.sleep(1)
 
-    # publish date and time in their own topics
-    mqtt_client.publish("sangwonc/temperature", f"{temp}")
-    print(f"Publishing temperature: {temp} C")
-    time.sleep(1)
-
-    mqtt_client.publish("sangwonc/humidity", f"{hum}")
-    print(f"Publishing humidity: {hum}%")
-    time.sleep(1)
+    # # publish date and time in their own topics
+    # mqtt_client.publish("sangwonc/temperature", f"{temp}")
+    # print(f"Publishing temperature: {temp} C")
+    # time.sleep(1)
+    #
+    # mqtt_client.publish("sangwonc/humidity", f"{hum}")
+    # print(f"Publishing humidity: {hum}%")
+    # time.sleep(1)
 
 def main():
     # Specify port numbers for each sensor/display
@@ -64,8 +65,6 @@ def main():
     time.sleep(1)
 
     clientmqtt = connect_MQTT()
-
-
 
     while True:
 
