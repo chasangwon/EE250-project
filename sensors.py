@@ -11,41 +11,7 @@ except RuntimeError:
         "Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
 
-def main():
-    # Specify port numbers for each sensor/display
-    temphum_port = 2  # port D2
-    ultra_port = 4  # port D4
-    # Establish ports as either inputs or outputs
-    grovepi.pinMode(ultra_port, "INPUT")
 
-
-    # # Initialize variables used in while loop
-    # humi_old = 0
-    # temp_old = 0
-
-    data = []
-
-    grovepi.set_bus("RPI_1")
-    time.sleep(1)
-
-    client = connect_MQTT()
-
-    while True:
-
-        # Read new sensor value from potentiometer, ultrasonic ranger
-        distance_new = grovepi.ultrasonicRead(ultra_port)
-        [humi_new, temp_new] = grovepi.dht(temphum_port, 0)
-
-        print('Distance: {}, Humi: {}, Temp: {}'.format(distance_new, humi_new, temp_new))
-        data.extend([distance_new, temp_new, humi_new])
-
-        publish_data(client, data)
-
-        # New sensor values are now old
-        # [humi_old, temp_old] = [humi_new, temp_new]
-        # distance_old = distance_new
-        data = []
-        time.sleep(1)
 
 
 
@@ -84,6 +50,41 @@ def publish_data(mqtt_client, data):
     print(f"Publishing humidity: {hum}%")
     time.sleep(1)
 
+def main():
+    # Specify port numbers for each sensor/display
+    temphum_port = 2  # port D2
+    ultra_port = 4  # port D4
+    # Establish ports as either inputs or outputs
+    grovepi.pinMode(ultra_port, "INPUT")
+
+
+    # # Initialize variables used in while loop
+    # humi_old = 0
+    # temp_old = 0
+
+    data = []
+
+    grovepi.set_bus("RPI_1")
+    time.sleep(1)
+
+    clientmqtt = connect_MQTT()
+
+    while True:
+
+        # Read new sensor value from potentiometer, ultrasonic ranger
+        distance_new = grovepi.ultrasonicRead(ultra_port)
+        [humi_new, temp_new] = grovepi.dht(temphum_port, 0)
+
+        print('Distance: {}, Humi: {}, Temp: {}'.format(distance_new, humi_new, temp_new))
+        data.extend([distance_new, temp_new, humi_new])
+
+        publish_data(clientmqtt, data)
+
+        # New sensor values are now old
+        # [humi_old, temp_old] = [humi_new, temp_new]
+        # distance_old = distance_new
+        data = []
+        time.sleep(1)
 
 if __name__ == '__main__':
     main()
