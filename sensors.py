@@ -11,10 +11,6 @@ except RuntimeError:
         "Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
 
-
-
-
-
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
@@ -23,7 +19,7 @@ def connect_MQTT():
 
     client.on_connect = on_connect
 
-    client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
+    client.connect(host="172.20.10.2", port=1883, keepalive=60)
 
     client.loop_start()
     time.sleep(1)
@@ -68,6 +64,8 @@ def main():
     time.sleep(1)
 
     clientmqtt = connect_MQTT()
+
+
 
     while True:
 

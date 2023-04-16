@@ -38,6 +38,6 @@ if __name__ == '__main__':
     # attach the on_connect() callback function defined above to the mqtt client
     client.on_connect = on_connect
 
-    client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
+    client.connect(host="172.20.10.2", port=1883, keepalive=60)
 
     client.loop_forever()
