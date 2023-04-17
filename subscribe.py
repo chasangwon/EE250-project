@@ -36,9 +36,9 @@ def on_message_from_humidity(client, userdata, message):
     print("Custom callback  - humidity " + message.payload.decode())
 
 def on_message_from_payload(client, userdata, message):
-    d = json.loads(message.payload.decode("utf-8"))
+    d = json.loads(message.payload.decode())
     with open("sensor_info.txt", "a+") as file:
-        file.write("{0},{1},{2}".format(d["distance"], d["temp"], d["hum"]))
+        file.write("{0},{1},{2}".format(d["Distance"], d["Temp"], d["Hum"]))
 
 def process_info():
     with open('sensor_info.txt', 'r') as f:

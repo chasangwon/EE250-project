@@ -32,10 +32,11 @@ def publish_data(mqtt_client, data):
     distance = data[0]
     temp = data[1]
     hum = data[2]
+    d = {'Distance': distance, 'Temp': temp, 'Hum': hum}
 
     # replace user with your USC username in all subscriptions
-    mqtt_client.publish("sangwonc/sensor_info", '{\"Distance\": {0}, \"Temp\": {1}, \"Hum\": {2}}'.format(distance, temp, hum))
-    print(f"Publishing distance: {distance} cm")
+    mqtt_client.publish("sangwonc/sensor_info", json.dumps(d))
+    print("Publishing data")
     time.sleep(1)
 
     # # publish date and time in their own topics
