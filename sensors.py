@@ -51,7 +51,6 @@ def main():
         distance_new = grovepi.ultrasonicRead(ultra_port)
         [humi_new, temp_new] = grovepi.dht(temphum_port, 0)
         print('Distance: {}, Humi: {}, Temp: {}'.format(distance_new, humi_new, temp_new))
-
         telemetry['Distance'] = distance_new
         telemetry['Temp'] = temp_new
         telemetry['Hum'] = humi_new
