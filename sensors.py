@@ -23,7 +23,6 @@ def connect_MQTT():
     # mqtt_client.publish("sangwonc/temperature", f"{temp}")
     # print(f"Publishing temperature: {temp} C")
     # time.sleep(1)
-    #
     # mqtt_client.publish("sangwonc/humidity", f"{hum}")
     # print(f"Publishing humidity: {hum}%")
     # time.sleep(1)
