@@ -19,9 +19,7 @@ def connect_MQTT():
     client.connect()
     time.sleep(1)
 
-def publish_data():
-
-    # # publish date and time in their own topics
+#def publish_data():
     # mqtt_client.publish("sangwonc/temperature", f"{temp}")
     # print(f"Publishing temperature: {temp} C")
     # time.sleep(1)
@@ -57,7 +55,7 @@ def main():
         telemetry['Distance'] = distance_new
         telemetry['Temp'] = temp_new
         telemetry['Hum'] = humi_new
-        client.send_telemtry(telemetry)
+        client.send_telemetry(telemetry)
 
         time.sleep(1)
 
