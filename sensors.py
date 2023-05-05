@@ -47,7 +47,7 @@ def main():
     def connect_MQTT():
         global client
         client = TBDeviceMqttClient('demo.thingsboard.io', 1883, 'Y3FuVTzm2QzLnA2il9Xo')
-        client.on_connect = on_connect
+        # client.on_connect = on_connect
         client.set_server_side_rpc_request_handler(on_server_rpc_request)
         client.connect()
         time.sleep(1)
@@ -56,9 +56,9 @@ def main():
     def on_server_rpc_request(client, request_id, request_body):
         global led_on
         if request_body['method'] == 'getLED':
-            client.send_rpc_reply(request_id, led_on)
+            client.send_rpc_reply(request_id, (True if (led_on == 1) else False))
         elif request_body['method'] == 'setLED':
-            led_on = request_body['params']
+            led_on = 1 if request_body['params'] else 0
             grovepi.digitalWrite(led_port, led_on)
 
     connect_MQTT()
