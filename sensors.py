@@ -48,7 +48,7 @@ def main():
         global client
         client = TBDeviceMqttClient('demo.thingsboard.io', 1883, 'Y3FuVTzm2QzLnA2il9Xo')
         # client.on_connect = on_connect
-        client.set_server_side_rpc_request_handler(on_server_rpc_request)
+        # client.set_server_side_rpc_request_handler(on_server_rpc_request)
         client.connect()
         time.sleep(1)
 
