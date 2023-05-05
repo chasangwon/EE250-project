@@ -74,12 +74,14 @@ def main():
         telemetry['Hum'] = humi
         client.send_telemetry(telemetry)
 
-        if light > 200 or temp > 70 or humi < 20:
+        if light > 300 or temp > 70 or humi < 20:
             grovepi.digitalWrite(buzzer_port,1)
+        else:
+            grovepi.digitalWrite(buzzer_port, 0)
 
         time.sleep(1)
 
-        grovepi.digitalWrite(buzzer_port,0) # turn off at every loop
+
 
 if __name__ == '__main__':
     main()
