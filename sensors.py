@@ -52,14 +52,14 @@ def main():
         client.connect()
         time.sleep(1)
 
-    # controls LED (room light) from dashboard
-    def on_server_rpc_request(client, request_id, request_body):
-        global led_on
-        if request_body['method'] == 'getLED':
-            client.send_rpc_reply(request_id, (True if (led_on == 1) else False))
-        elif request_body['method'] == 'setLED':
-            led_on = 1 if request_body['params'] else 0
-            grovepi.digitalWrite(led_port, led_on)
+    # # controls LED (room light) from dashboard
+    # def on_server_rpc_request(client, request_id, request_body):
+    #     global led_on
+    #     if request_body['method'] == 'getLED':
+    #         client.send_rpc_reply(request_id, (True if (led_on == 1) else False))
+    #     elif request_body['method'] == 'setLED':
+    #         led_on = 1 if request_body['params'] else 0
+    #         grovepi.digitalWrite(led_port, led_on)
 
     connect_MQTT()
 
