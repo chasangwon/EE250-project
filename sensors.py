@@ -74,7 +74,7 @@ def main():
         telemetry['Hum'] = humi
         client.send_telemetry(telemetry)
 
-        if light > 800:
+        if light > 200 or temp > 70 or humi < 20:
             grovepi.digitalWrite(buzzer_port,1)
 
         time.sleep(1)
