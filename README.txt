@@ -10,3 +10,6 @@ import time
 import grovepi
 from tb_device_mqtt import TBDeviceMqttClient
 (import statements were copied and pasted)
+
+Link to video demo:
+https://drive.google.com/drive/folders/1aN1z0IznzLqLb2RA77quWkN8iKxKv-dy?usp=sharing
